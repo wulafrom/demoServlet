@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--自定义servlet，应对客户端的请求-->
+    <servlet>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>com.study.servlet.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>/myServlet.action</url-pattern>
+    </servlet-mapping>
+
+    <!--日志过滤器-->
+    <filter>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>com.study.filter.LogFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--请求处理-->
+    <filter>
+        <filter-name>ActionFilter</filter-name>
+        <filter-class>com.study.filter.ActionFilter</filter-class>
+
+        <init-param>
+            <description>编码</description>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <description>登陆页面</description>
+            <param-name>loginString</param-name>
+            <param-value>login.jsp;login.html</param-value>
+        </init-param>
+        <init-param>
+            <description>不参考过滤的请求</description>
+            <param-name>includeString</param-name>
+            <param-value>login.action;login2.action</param-value>
+        </init-param>
+        <init-param>
+            <description>是否过滤</description>
+            <param-name>isDisable</param-name>
+            <param-value>Y</param-value>
+        </init-param>
+        <init-param>
+            <description>重定向页面</description>
+            <param-name>redirectPath</param-name>
+            <param-value>login.jsp</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ActionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
