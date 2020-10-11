@@ -14,6 +14,7 @@ import java.io.IOException;
  */
 public class ActionFilter implements Filter {
 
+
     private String redirectPath;
     private String isDisable;
     private String encoding;
@@ -41,7 +42,7 @@ public class ActionFilter implements Filter {
         httpResponse.setContentType("text/html;charset=utf-8");
         httpRequest.setCharacterEncoding(encoding);
         httpResponse.setCharacterEncoding(encoding);
-        if ("n".equals(isDisable)) {
+        if (Boolean.getBoolean(isDisable)) {
             chain.doFilter(request, response);
             return;
         }

@@ -14,6 +14,14 @@
         <url-pattern>/myServlet.action</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DoGetServlet</servlet-name>
+        <servlet-class>com.study.servlet.DoGetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoGetServlet</servlet-name>
+        <url-pattern>/doGetServlet.action</url-pattern>
+    </servlet-mapping>
     <!--日志过滤器-->
     <filter>
         <filter-name>LogFilter</filter-name>
@@ -25,9 +33,10 @@
     </filter-mapping>
 
     <!--请求处理-->
-    <filter>
+    <!--<filter>
         <filter-name>ActionFilter</filter-name>
         <filter-class>com.study.filter.ActionFilter</filter-class>
+
 
         <init-param>
             <description>编码</description>
@@ -45,9 +54,9 @@
             <param-value>login.action;login2.action</param-value>
         </init-param>
         <init-param>
-            <description>是否过滤</description>
+            <description>不启用过滤器</description>
             <param-name>isDisable</param-name>
-            <param-value>Y</param-value>
+            <param-value>true</param-value>
         </init-param>
         <init-param>
             <description>重定向页面</description>
@@ -58,5 +67,5 @@
     <filter-mapping>
         <filter-name>ActionFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 </web-app>

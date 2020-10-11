@@ -1,15 +1,16 @@
 package com.study.servlet;
 
+import com.alibaba.fastjson.JSONObject;
+import com.study.utils.GetRequestJsonUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @version V1.0
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * @author: h'mm
  * @date: 2020-10-10 15:29
  */
-@WebServlet(name = "myServlet")
+//@WebServlet(name = "myServlet")
 public class MyServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(HttpServlet.class);
 
@@ -25,28 +26,39 @@ public class MyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getRequestLine(req);
-        req.setAttribute("test","hello");
-        req.getRequestDispatcher("/hello.html").include(req,  resp);
+        req.setAttribute("test", "hello");
+        req.getRequestDispatcher("/hello.html").include(req, resp);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        JSONObject jsonObject = GetRequestJsonUtils.getRequestJsonObject(req);
+        System.out.println("name " + jsonObject.getString("name"));
+        System.out.println("gender "+jsonObject.getString("gender"));
+        System.out.println("age "+jsonObject.getInteger("age"));
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
-        setCookie(req,resp);
+        setCookie(req, resp);
         getCookies(req);
         System.out.println("来客了");
     }
 
+
+
+
+
+
+
     private void getCookies(HttpServletRequest req) {
         Cookie[] cookies = req.getCookies();
-        for (Cookie cookie : cookies) {
-            System.out.println("name" + cookie.getName() + " value" + cookie.getValue());
+        if (cookies != null && cookies.length > 0) {
+            for (Cookie cookie : cookies) {
+                System.out.println("name" + cookie.getName() + " value" + cookie.getValue());
+            }
         }
     }
 
@@ -54,8 +66,8 @@ public class MyServlet extends HttpServlet {
         Cookie comCookie = new Cookie("computer", "Fire Shadow");
         Cookie mouseCookie = new Cookie("mouse", "logitech");
         Cookie keyCookie = new Cookie("key", "jazz");
-        mouseCookie.setMaxAge(3600*24*3);
-        keyCookie.setPath(req.getContextPath()+"/car");
+        mouseCookie.setMaxAge(3600 * 24 * 3);
+        keyCookie.setPath(req.getContextPath() + "/car");
         resp.addCookie(comCookie);
         resp.addCookie(mouseCookie);
         resp.addCookie(keyCookie);
@@ -64,6 +76,6 @@ public class MyServlet extends HttpServlet {
     private void getRequestLine(HttpServletRequest req) {
         System.out.println(req.getMethod());
         System.out.println(req.getContextPath());
-        logger.info("请求方式"+req.getMethod());
+        logger.info("请求方式" + req.getMethod());
     }
 }
