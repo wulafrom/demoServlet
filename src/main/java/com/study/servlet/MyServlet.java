@@ -1,6 +1,5 @@
 package com.study.servlet;
 
-import com.alibaba.fastjson.JSONObject;
 import com.study.utils.GetRequestJsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +32,8 @@ public class MyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JSONObject jsonObject = GetRequestJsonUtils.getRequestJsonObject(req);
-        System.out.println("name " + jsonObject.getString("name"));
-        System.out.println("gender "+jsonObject.getString("gender"));
-        System.out.println("age "+jsonObject.getInteger("age"));
+        String requestJsonString = GetRequestJsonUtils.getRequestJsonString(req);
+        System.out.println(requestJsonString);
     }
 
     @Override

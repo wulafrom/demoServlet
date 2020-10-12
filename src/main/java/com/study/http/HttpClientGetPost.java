@@ -1,4 +1,4 @@
-package com.test;
+package com.study.http;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.http.HttpEntity;
@@ -23,10 +23,9 @@ import java.util.Map;
  * @author: h'mm
  * @date: 2020-10-11 16:00
  */
-public class HttpClientTwo {
+public class HttpClientGetPost {
     /**
      * GET---无参测试
-     *
      * @date 2018年7月13日 下午4:18:50
      */
     @Test
@@ -34,7 +33,7 @@ public class HttpClientTwo {
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         // 创建Get请求
-        HttpGet httpGet = new HttpGet("http://localhost:8080/demoServlet/doGetServlet.action");
+        HttpGet httpGet = new HttpGet("http://v.juhe.cn/todayOnhistory/queryEvent.php?key=ae6a6073b397d06325b0b8b267e4213d&date=1/1");
         // 响应模型
         CloseableHttpResponse response = null;
         try {

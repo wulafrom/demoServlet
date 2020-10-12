@@ -1,4 +1,4 @@
-package com.test;
+package com.study.http;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;
@@ -25,6 +25,10 @@ import java.nio.charset.StandardCharsets;
  */
 public class HttpClientFile {
 
+    /**
+     * 文件上传
+     * @throws UnsupportedEncodingException
+     */
     @Test
     public void test4() throws UnsupportedEncodingException {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();

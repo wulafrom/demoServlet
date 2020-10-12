@@ -28,6 +28,9 @@ import java.util.*;
 public class HttpClientTest {
     private final static Logger logger = LoggerFactory.getLogger(HttpUrlConnectionTest.class);
 
+    /**
+     * 下载图片
+     */
     @Test
     public void testHttpClient() {
         String path = "https://img1.qunarzz.com/travel/d6/1701/c3/ad1a5ce13c3e2bb5.jpg?ver=1";
@@ -52,6 +55,7 @@ public class HttpClientTest {
             e.printStackTrace();
         }
     }
+
 
     @Test
     public void testHttpClientParam() {
