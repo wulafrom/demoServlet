@@ -16,8 +16,9 @@ import java.io.IOException;
  * @Description:
  * @author: h'mm
  * @date: 2020-10-10 15:29
+ * //@WebServlet(name = "myServlet")
  */
-//@WebServlet(name = "myServlet")
+
 public class MyServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(HttpServlet.class);
 
@@ -31,7 +32,7 @@ public class MyServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String requestJsonString = GetRequestJsonUtils.getRequestJsonString(req);
         System.out.println(requestJsonString);
     }
